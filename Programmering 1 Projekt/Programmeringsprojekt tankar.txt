@@ -1,0 +1,28 @@
+Programmeringsprojekt:
+
+1. Valsimulator:
+
+	 Gör dictionary med partierna och randomisera "range(max, min)" och lite roliga svar.
+
+
+2. Frågesport: 
+
+	Api och poängräknare.
+
+
+3. Excel-to-Doc: 
+
+	Läsa in excelfilen och sätt in i Word-mall.
+
+
+4. Gympass-genererare: 
+
+	Dictionaries, användarinmatning.
+
+
+
+VAD VILL JAG GÖRA?
+
+Valsimulator och frågsport verkar roliga, och jag skulle vilja lära mig mer om excel-doc. Gymmet är inte intressant för tillfället.
+
+Jag börjar med VALSIMULATORN och går vidare till FRÅGESPORTEN om jag hinner.
