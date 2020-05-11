@@ -12,7 +12,7 @@ Mitt projekt är en valsimulator som använder slumpade värden för att simuler
 ![alt_text](https://raw.githubusercontent.com/abbindustrigymnasium/programmering-1-miniprojekt-abbwiljoh/master/bilder/Val_TerminalBild.jpg "Terminalen från Val.py")
 
 ### Grundläggande om kod
-Programmet bygger på en dictionary där alla partier och relevant information finns och ett värde, position, som säger i vilken ordning partierna och deras resultat ska behandlas. Denna position anknyter till den lista som skapas när alla röster räknats, så att man kan kolla på listan "voteslist" och se att ```voteslist.index(RÖSTANTAL)``` korresponderar med positionsvärdeet i dicten.
+Programmet bygger på en dictionary där alla partier och relevant information finns och ett värde, position, som säger i vilken ordning partierna och deras resultat ska behandlas. Denna position anknyter till den lista som skapas när alla röster räknats, så att man kan kolla på listan "voteslist" och se att ```voteslist.index(RÖSTANTAL)``` korresponderar med positionsvärdet i dicten.
 ```python
     {'Partinamn': 'Partikelpartiet',
      'Vänster': True,
