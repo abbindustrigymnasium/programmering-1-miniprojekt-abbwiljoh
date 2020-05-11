@@ -30,4 +30,4 @@ Diagrammet bygger på matplotlib och är relativt grundläggande. Jag kunde gans
 ![alt_text](https://raw.githubusercontent.com/abbindustrigymnasium/programmering-1-miniprojekt-abbwiljoh/master/bilder/Valresultat_bild.jpg "Diagram från Val.py")
 
 ### Frågor
-Om du har några frågor eller om det finns några okklarheter, kontakta mig.
+Om du har några frågor eller om det finns några oklarheter, kontakta mig.
