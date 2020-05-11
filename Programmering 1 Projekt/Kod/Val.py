@@ -1,3 +1,4 @@
+# 3. Reagera!
 import random as r
 # Numpy och matplot/lib används för att skriva ut ett fint diagram. Planen var att först
 import matplotlib
@@ -5,6 +6,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 # idé så jag använder ett stolpdiagram istället.
 import numpy as np
+import ValFunktioner as v
 
 P = {'Partier': [                       # Dictionariet bygger på informationen från tabellen i instruktionerna.
     {'Partinamn': 'Gröngölingarna',     # Partinamn förklarar sig självt, det ä en string.
@@ -92,52 +94,6 @@ Kommentar = False
 comma = True
 omval = True
 
-
-# Sorterar angiven lista genom att jämföra varje värde i listan med det tänkta största värdet för att sedan få ut ett ensamt värde.
-def orderlist(lista):
-    a = lista[0]
-    for x in lista:
-        if x > a:           # Om det jämförda värdet är större än det nuvarande största värdet, blir det jämförda värdet det nya största värdet.
-            a = x
-    return a
-
-
-def reaction(name, party, votes, Positiv=True):
-    PoRe = ['tar med glädje emot ' + str(votes)+'% röster', 'är tacksam för '+str(
-        votes) + '%', 'är glad över '+str(votes)+'%']                                   # En funktion så jag slipper skriva ut reaktionen hella tiden.
-
-    NeRe = ['är missnöjd över ', 'gillar inte ', 'vägrar acceptera ',
-            'är förkrossad över ', 'låtsas vara oberörd av ', 'är rosenrasande över ']
-    # Slumpar ett svar utifrån positiva och negativa omständigheter.
-    if Positiv == True:
-        print(name, 'från', party, str(r.choice(PoRe)))
-    else:
-        print(name, 'från', party, str(r.choice(NeRe)) + str(votes)+'%')
-
-
-# En egen funktion för att kunna få partiledaren från det största partiet i en falang reagera på resultatet.
-def hvreaction(leader, party, vänster=False):
-    reactions = ['uppskattar att', 'är nöjd över att', 'är tacksam för att']
-    if vänster == True:
-        print(leader+' från det största vänster-partiet,', party +
-              ', '+str(r.choice(reactions)), 'vänstern är störst.')
-    if vänster == False:
-        print(leader+' från det största höger-partiet,', party +
-              ', ' + str(r.choice(reactions)), 'högern är störst.')
-
-
-# Partiledarna ska kunna göra handlingar som påverkar hur folk röstar på dem.
-def kommentar(leader, party, bad=True):
-    badK = ['förolämpade en folkgrupp!', 'har begått ett brott!', 'provocerar ryssarna!',
-            'kastade pajer på motståndet!', 'har kommit ut som usel sångare!', 'snubblade över sin egen hand!']
-    # För tillfället används inte denna rad, men jag lämnar den här för framtida ändringar
-    goodK = ['sade att de gillade att människor mår bra!']
-    if bad == True:
-        print(leader, 'från', party, r.choice(badK))
-    elif bad == True:
-        print(leader, 'från', party, r.choice(goodK))
-
-
 # Det finns 1/5 chans att någon gör en dum handling
 kchans = r.randint(0, 4)
 if kchans == 0:
@@ -157,7 +113,7 @@ for parti in P['Partier']:
 
 if Kommentar == True:
     # Om vi har en dummis som gör bort sig ska den förlora 20% av sina röstchanser
-    kommentar(dummis['Partiledare'], dummis['Partinamn'], True)
+    v.kommentar(dummis['Partiledare'], dummis['Partinamn'], True)
     # Detta innebär att alla andra partier kan få lite fler röster automatiskt
     dummis['Min_Röst'] = round(dummis['Min_Röst']*0.8)
     dummis['Max_Röst'] = round(dummis['Max_Röst']*0.8)
@@ -223,22 +179,22 @@ Oljeblock = sum(oljelist)
 Småblock = sum(smålist)
 
 print()
-for v in voteslist:
-    winnerlist.append(v)
+for a in voteslist:
+    winnerlist.append(a)
 
-win = orderlist(winnerlist)     # Sorterarfunktionen används här för att hitta största partier: I valet, vänstern och högern.
-vän = orderlist(vänlist)
-hög = orderlist(höglist)
+win = v.orderlist(winnerlist)     # Sorterarfunktionen används här för att hitta största partier: I valet, vänstern och högern.
+vän = v.orderlist(vänlist)
+hög = v.orderlist(höglist)
 
 if Vänster > Höger:
     for parti in P['Partier']:
         if voteslist[parti['Position']] == vän:
-            hvreaction(parti['Partiledare'],            # Höger-/Vänster-reaktionsfunktionen används här så partiledaren kan reagera till resultatet
+            v.hvreaction(parti['Partiledare'],            # Höger-/Vänster-reaktionsfunktionen används här så partiledaren kan reagera till resultatet
                        parti['Partinamn'], parti['Vänster'])
 elif Vänster < Höger:
     for parti in P['Partier']:
         if voteslist[parti['Position']] == hög:
-            hvreaction(parti['Partiledare'],
+            v.hvreaction(parti['Partiledare'],
                        parti['Partinamn'], parti['Vänster'])
 else:
     # Jag är ingen politiker, så jag vet inte vad som händer om inriktiningarna är lika stora.
@@ -272,10 +228,10 @@ print()
 
 for parti in P['Partier']:
     if voteslist[parti['Position']] < 4:
-        reaction(parti['Partiledare'], parti['Partinamn'],  # För "förlorarna" använder vi de negativa reaktionerna.
+        v.reaction(parti['Partiledare'], parti['Partinamn'],  # För "förlorarna" använder vi de negativa reaktionerna.
                  voteslist[parti['Position']], False)
     if winner == parti:
-        reaction(parti['Partiledare'], parti['Partinamn'],  # Vinnaren måste såklart reagera till vinsten
+        v.reaction(parti['Partiledare'], parti['Partinamn'],  # Vinnaren måste såklart reagera till vinsten
                  voteslist[parti['Position']], True)
 if Kommentar== True:
     print(dummis['Partiledare'],'från'+dummis['Partinamn'],'ber om ursäkt för den tidigare incidenten') # Har någon gjort fel, ber de om ursäkt.
